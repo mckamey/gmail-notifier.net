@@ -50,7 +50,7 @@
     <Compile Include="Atom\AtomEntry.cs" />
     <Compile Include="Feeds\Notification.cs" />
     <Compile Include="Feeds\SerializedFeed.cs" />
-    <Compile Include="Feeds\BaseFeed.cs" />
+    <Compile Include="Feeds\NotifierProvider.cs" />
     <Compile Include="Feeds\GmailFeed.cs" />
     <Compile Include="NotifierForm.cs">
       <SubType>Form</SubType>

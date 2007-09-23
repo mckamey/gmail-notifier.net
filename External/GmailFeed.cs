@@ -5,7 +5,7 @@ using Notifier.Atom;
 
 namespace Notifier.Providers
 {
-	public class GmailProvider : XmlProvider<AtomFeed03>
+	public class GmailProvider : XmlNotifierProvider<AtomFeed03>
 	{
 		#region Constants
 

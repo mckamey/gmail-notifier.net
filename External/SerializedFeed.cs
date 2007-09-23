@@ -7,7 +7,7 @@ using System.Xml.XPath;
 
 namespace Notifier.Providers
 {
-	public abstract class XmlProvider<T> : NotifierProvider where T : class
+	public abstract class XmlNotifierProvider<T> : NotifierProvider where T : class
 	{
 		#region BaseFeed Members
 
