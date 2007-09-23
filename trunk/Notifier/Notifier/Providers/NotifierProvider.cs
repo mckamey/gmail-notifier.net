@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Security;
 using System.Net;
 
-using Notifier.Atom;
-
 namespace Notifier.Providers
 {
 	public abstract class NotifierProvider
