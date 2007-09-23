@@ -97,14 +97,17 @@ namespace Notifier.Providers
 		protected override List<Notification> ParseFeed(AtomFeed03 feed)
 		{
 			List<Notification> msgs = new List<Notification>(feed.Entries.Count);
-			foreach (AtomEntry entry in feed.Entries)
+			foreach (AtomEntry03 entry in feed.Entries)
 			{
 				Notification msg = new Notification(entry.ID);
 				msg.Title = entry.Title.Value;
-				msg.Author =
-					String.IsNullOrEmpty(entry.Author.Name) ?
-					entry.Author.Email :
-					entry.Author.Name;
+				if (entry.Authors.Count > 0)
+				{
+					msg.Author =
+					String.IsNullOrEmpty(entry.Authors[0].Name) ?
+					entry.Authors[0].Email :
+					entry.Authors[0].Name;
+				}
 				msg.Body = entry.Summary.Value;
 				msg.Date = entry.Modified.Value;
 				msg.Index = msgs.Count+1;
