@@ -113,7 +113,7 @@ namespace Notifier
 			// 
 			// theTimer
 			// 
-			this.theTimer.Interval = 60000;
+			this.theTimer.Interval = 300000;
 			this.theTimer.Tick += new System.EventHandler(this.theTimer_Tick);
 			// 
 			// btnCancel
