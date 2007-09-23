@@ -48,10 +48,10 @@
     <Compile Include="Atom\AtomDate.cs" />
     <Compile Include="Atom\AtomLink.cs" />
     <Compile Include="Atom\AtomEntry.cs" />
-    <Compile Include="Feeds\Notification.cs" />
-    <Compile Include="Feeds\SerializedFeed.cs" />
-    <Compile Include="Feeds\NotifierProvider.cs" />
-    <Compile Include="Feeds\GmailFeed.cs" />
+    <Compile Include="Providers\Notification.cs" />
+    <Compile Include="Providers\XmlNotifierProvider.cs" />
+    <Compile Include="Providers\NotifierProvider.cs" />
+    <Compile Include="Providers\GmailProvider.cs" />
     <Compile Include="NotifierForm.cs">
       <SubType>Form</SubType>
     </Compile>
