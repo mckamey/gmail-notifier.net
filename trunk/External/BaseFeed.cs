@@ -6,9 +6,9 @@ using System.Net;
 
 using Notifier.Atom;
 
-namespace Notifier.Feeds
+namespace Notifier.Providers
 {
-	public abstract class BaseFeed
+	public abstract class NotifierProvider
 	{
 		#region Fields
 

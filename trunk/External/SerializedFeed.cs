@@ -5,9 +5,9 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 
-namespace Notifier.Feeds
+namespace Notifier.Providers
 {
-	public abstract class SerializedFeed<T> : BaseFeed where T : class
+	public abstract class XmlProvider<T> : NotifierProvider where T : class
 	{
 		#region BaseFeed Members
 

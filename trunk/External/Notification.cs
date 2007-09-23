@@ -1,6 +1,6 @@
 using System;
 
-namespace Notifier.Feeds
+namespace Notifier.Providers
 {
 	public class Notification
 	{
