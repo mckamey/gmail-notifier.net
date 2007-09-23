@@ -42,6 +42,7 @@ namespace Notifier
 		private int previewDelay = -1;
 		private List<Notification> msgs = new List<Notification>();
 		private NotifyMessage notify = new NotifyMessage();
+		private readonly Dictionary<string, bool> ReadCache = new Dictionary<string, bool>();
 
 		#endregion Fields
 
@@ -107,9 +108,10 @@ namespace Notifier
 
 		protected void UpdateNotifier()
 		{
+			List<Notification> msgs = null;
 			try
 			{
-				List<Notification> msgs = this.gmail.GetNotifications();
+				this.gmail.GetNotifications();
 				if (msgs.Count < 1)
 				{
 					this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NoMail);
@@ -119,32 +121,48 @@ namespace Notifier
 
 				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NewMail);
 				this.theNotifyIcon.BalloonTipText = msgs.Count+" new messages.";
-
-				this.msgs.AddRange(msgs);
-				this.timerPreview.Start();
 			}
-			catch
+			catch (System.Net.WebException ex)
 			{
 				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_Error);
+
+				Notification msg = new Notification(ex.Message);
+				msg.Title = ex.Status.ToString();
+				msg.Body = ex.Message;
+				msg.Date = DateTime.Now;
+				msg.Link = ex.Response.ResponseUri;
+				msg.Author = null;
+				msg.Index = 0;
+				msg.Count = 0;
+
+				msgs = new List<Notification>();
+				msgs.Add(msg);
+			}
+
+			foreach (Notification msg in msgs)
+			{
+				if (!this.ReadCache.ContainsKey(msg.ID))
+				{
+					this.msgs.AddRange(msgs);
+					this.DisplayNotifications();
+					this.timerPreview.Start();
+					return;
+				}
 			}
 		}
 
-		protected void SignIn()
+		protected void SignIn(string username, string password)
 		{
-			this.gmail = new Notifier.Providers.GmailProvider(this.textUsername.Text, this.textPassword.Text);
+			this.gmail = new GmailProvider(username, password);
 			this.Hide();
 			this.UpdateNotifier();
 			this.timerPolling.Interval = this.RefreshRate;
 			this.timerPolling.Start();
 		}
 
-		#endregion Methods
-
-		#region Child Control Events
-
-		private void timerPreview_Tick(object sender, EventArgs e)
+		protected void DisplayNotifications()
 		{
-			if (this.msgs.Count < 1)
+			if (this.msgs.Count <= 0)
 			{
 				this.notify.Hide();
 				this.timerPreview.Stop();
@@ -153,33 +171,20 @@ namespace Notifier
 
 			Notification msg = this.msgs[0];
 			this.msgs.RemoveAt(0);
+			this.ReadCache[msg.ID] = true;
 			this.notify.SetMessage(msg);
 			this.notify.Show();
 		}
 
-		private void timerPolling_Tick(object sender, EventArgs e)
-		{
-			this.UpdateNotifier();
-		}
+		#endregion Methods
 
-		private void theNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-		{
-			this.Show();
-			this.WindowState = FormWindowState.Normal;
-		}
+		#region Context Menu Handlers
 
-		private void openToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			this.Show();
-			this.WindowState = FormWindowState.Normal;
-		}
-
-		private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+		private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (this.gmail == null)
 			{
 				this.Show();
-				this.WindowState = FormWindowState.Normal;
 			}
 			else
 			{
@@ -192,9 +197,40 @@ namespace Notifier
 			this.Close();
 		}
 
+		#endregion Context Menu Handlers
+
+		#region Timer Handlers
+
+		private void timerPreview_Tick(object sender, EventArgs e)
+		{
+			this.DisplayNotifications();
+		}
+
+		private void timerPolling_Tick(object sender, EventArgs e)
+		{
+			this.UpdateNotifier();
+		}
+
+		#endregion Timer Handlers
+
+		#region NotifyIcon Handlers
+
+		private void theNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			this.Show();
+			this.WindowState = FormWindowState.Normal;
+		}
+
+		#endregion NotifyIcon Handlers
+
+		#region NotifierForm Handlers
+
 		private void btnOK_Click(object sender, EventArgs e)
 		{
-			this.SignIn();
+			if (!String.IsNullOrEmpty(this.textUsername.Text) && !String.IsNullOrEmpty(this.textPassword.Text))
+			{
+				this.SignIn(this.textUsername.Text, this.textPassword.Text);
+			}
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)
@@ -208,32 +244,11 @@ namespace Notifier
 			this.textUsername.Text = this.textPassword.Text = null;
 		}
 
-		private void NotifierForm_Resize(object sender, EventArgs e)
-		{
-			if (FormWindowState.Minimized == this.WindowState)
-			{
-				this.Hide();
-			}
-		}
-
-		private void NotifierForm_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if (e.KeyChar != '\n' && e.KeyChar != '\r')
-			{
-				return;
-			}
-
-			if (!String.IsNullOrEmpty(this.textUsername.Text) && !String.IsNullOrEmpty(this.textPassword.Text))
-			{
-				this.SignIn();
-			}
-		}
-
 		private void NotifierForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			this.theNotifyIcon.Visible = false;
 		}
 
-		#endregion Child Control Events
+		#endregion NotifierForm Handlers
 	}
 }

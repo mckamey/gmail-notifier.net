@@ -6,6 +6,7 @@ namespace Notifier.Providers
 	{
 		#region Fields
 
+		private string id = null;
 		private int count = 0;
 		private int index = 0;
 		private string title = null;
@@ -16,7 +17,25 @@ namespace Notifier.Providers
 
 		#endregion Fields
 
+		#region Init
+
+		/// <summary>
+		/// Ctor.
+		/// </summary>
+		/// <param name="id"></param>
+		public Notification(string id)
+		{
+			this.id = id;
+		}
+
+		#endregion Init
+
 		#region Properties
+
+		public string ID
+		{
+			get { return this.id; }
+		}
 
 		public int Count
 		{
