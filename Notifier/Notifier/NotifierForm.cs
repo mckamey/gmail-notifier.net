@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,15 +18,21 @@ namespace Notifier
 	{
 		#region Constants
 
-		private const string IconNewMail = "Icons.NewMail.ico";
-		private const string IconNoMail = "Icons.NoMail.ico";
-		private const string IconError = "Icons.Error.ico";
+		private const int MSPerMin = 60000;
+		private const int DefaultRefreshRate = 300000;
+		private const int MinRefreshRate = 30000;
+		private const string Config_RefreshRate = "RefreshRate";
+
+		private const string Icon_NewMail = "Icons.NewMail.ico";
+		private const string Icon_NoMail = "Icons.NoMail.ico";
+		private const string Icon_Error = "Icons.Error.ico";
 
 		#endregion Constants
 
 		#region Fields
 
-		Notifier.Providers.GmailProvider gmail;
+		private GmailProvider gmail;
+		private int refreshRate = -1;
 
 		#endregion Fields
 
@@ -41,6 +48,31 @@ namespace Notifier
 
 		#endregion Init
 
+		#region Properties
+
+		protected int RefreshRate
+		{
+			get
+			{
+				if (this.refreshRate < MinRefreshRate)
+				{
+					string rateStr = ConfigurationManager.AppSettings[Config_RefreshRate];
+					int rateMin;
+					if (Int32.TryParse(rateStr, out rateMin) && rateMin > 0)
+					{
+						this.refreshRate = MSPerMin * rateMin;
+					}
+					else
+					{
+						this.refreshRate = DefaultRefreshRate;
+					}
+				}
+				return this.refreshRate;
+			}
+		}
+
+		#endregion Properties
+
 		#region Methods
 
 		protected void UpdateNotifier()
@@ -50,12 +82,12 @@ namespace Notifier
 				List<Notification> msgs = this.gmail.GetNotifications();
 				if (msgs.Count < 1)
 				{
-					this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.IconNoMail);
+					this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NoMail);
 					this.theNotifyIcon.BalloonTipText = "No new messages.";
 					return;
 				}
 
-				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.IconNewMail);
+				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NewMail);
 				this.theNotifyIcon.BalloonTipText = msgs.Count+" new messages.";
 				foreach (Notification msg in msgs)
 				{
@@ -68,7 +100,7 @@ namespace Notifier
 			}
 			catch
 			{
-				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.IconError);
+				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_Error);
 			}
 		}
 
@@ -77,6 +109,7 @@ namespace Notifier
 			this.gmail = new Notifier.Providers.GmailProvider(this.textUsername.Text, this.textPassword.Text);
 			this.Hide();
 			this.UpdateNotifier();
+			this.theTimer.Interval = this.RefreshRate;
 			this.theTimer.Start();
 		}
 
