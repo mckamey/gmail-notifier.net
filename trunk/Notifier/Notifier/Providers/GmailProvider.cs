@@ -99,7 +99,7 @@ namespace Notifier.Providers
 			List<Notification> msgs = new List<Notification>(feed.Entries.Count);
 			foreach (AtomEntry entry in feed.Entries)
 			{
-				Notification msg = new Notification();
+				Notification msg = new Notification(entry.ID);
 				msg.Title = entry.Title.Value;
 				msg.Author =
 					String.IsNullOrEmpty(entry.Author.Name) ?

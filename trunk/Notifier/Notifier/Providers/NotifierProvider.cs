@@ -8,6 +8,12 @@ namespace Notifier.Providers
 {
 	public abstract class NotifierProvider
 	{
+		#region Constants
+
+		private const string AuthType = "Basic";
+
+		#endregion Constants
+
 		#region Fields
 
 		private Uri feedUri = null;
@@ -29,12 +35,17 @@ namespace Notifier.Providers
 			}
 		}
 
-		protected NetworkCredential Credientials
+		protected ICredentials Credientials
 		{
 			get
 			{
 				if (this.credentials == null)
 				{
+					if (String.IsNullOrEmpty(this.Username) || String.IsNullOrEmpty(this.Password))
+					{
+						return CredentialCache.DefaultCredentials;
+					}
+
 					this.credentials = new NetworkCredential();
 					this.credentials.UserName = this.Username;
 					this.credentials.Password = this.Password;
@@ -77,7 +88,7 @@ namespace Notifier.Providers
 			Stream stream = null;
 			using (WebClient client = new WebClient())
 			{
-				client.Credentials = this.Credientials.GetCredential(this.FeedUri, "Basic");
+				client.Credentials = this.Credientials.GetCredential(this.FeedUri, AuthType);
 #if DEBUG
 				//string data = client.DownloadString(this.FeedUri);
 #endif
