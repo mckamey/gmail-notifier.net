@@ -42,12 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Atom\AtomFeed.cs" />
-    <Compile Include="Atom\AtomText.cs" />
-    <Compile Include="Atom\AtomPerson.cs" />
-    <Compile Include="Atom\AtomDate.cs" />
-    <Compile Include="Atom\AtomLink.cs" />
-    <Compile Include="Atom\AtomEntry.cs" />
+    <Compile Include="Feeds\Atom\AtomFeed.cs" />
+    <Compile Include="Feeds\Atom\AtomText.cs" />
+    <Compile Include="Feeds\Atom\AtomPerson.cs" />
+    <Compile Include="Feeds\Atom\AtomDate.cs" />
+    <Compile Include="Feeds\Atom\AtomLink.cs" />
+    <Compile Include="Feeds\Atom\AtomEntry.cs" />
     <Compile Include="Providers\Notification.cs" />
     <Compile Include="Providers\XmlNotifierProvider.cs" />
     <Compile Include="Providers\NotifierProvider.cs" />
