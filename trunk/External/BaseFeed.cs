@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Security;
 using System.Net;
 
@@ -73,27 +74,17 @@ namespace Notifier.Feeds
 
 		#region Methods
 
-		public int Synchronize()
+		public List<Notification> GetNotifications()
 		{
-			try
+			Stream stream = null;
+			using (WebClient client = new WebClient())
 			{
-				Stream stream = null;
-				using (WebClient client = new WebClient())
-				{
-					client.Credentials = this.Credientials.GetCredential(this.FeedUri, "Basic");
-
+				client.Credentials = this.Credientials.GetCredential(this.FeedUri, "Basic");
 #if DEBUG
-					//string data = client.DownloadString(this.FeedUri);
+				//string data = client.DownloadString(this.FeedUri);
 #endif
-
-					stream = client.OpenRead(this.FeedUrl);
-					AtomFeed03 feed = this.ParseFeed(stream) as AtomFeed03;
-					return feed.Entries.Count;
-				}
-			}
-			catch
-			{
-				return -1;
+				stream = client.OpenRead(this.FeedUrl);
+				return this.ParseFeed(stream);
 			}
 		}
 
@@ -101,7 +92,7 @@ namespace Notifier.Feeds
 
 		#region Abstract Methods
 
-		protected abstract object ParseFeed(Stream stream);
+		protected abstract List<Notification> ParseFeed(Stream stream);
 
 		#endregion Abstract Methods
 	}

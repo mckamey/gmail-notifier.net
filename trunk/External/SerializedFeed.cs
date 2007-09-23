@@ -1,20 +1,23 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 
 namespace Notifier.Feeds
 {
-	public abstract class SerializedFeed<T> : BaseFeed
+	public abstract class SerializedFeed<T> : BaseFeed where T : class
 	{
 		#region BaseFeed Members
 
-		protected override object ParseFeed(Stream stream)
+		protected abstract List<Notification> ParseFeed(T feed);
+
+		protected override List<Notification> ParseFeed(Stream stream)
 		{
 			XmlSerializer serializer = new XmlSerializer(typeof(T));
 			T feed = (T)serializer.Deserialize(stream);
-			return feed;
+			return this.ParseFeed(feed);
 
 			//XPathDocument xDoc = new XPathDocument(stream);
 			//XPathNavigator xNav = xDoc.CreateNavigator();

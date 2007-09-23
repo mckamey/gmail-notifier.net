@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using Notifier.Feeds;
+
 namespace Notifier
 {
 	/// <summary>
@@ -43,18 +45,30 @@ namespace Notifier
 
 		protected void UpdateNotifier()
 		{
-			int count = this.gmail.Synchronize();
-			if (count < 0)
+			try
+			{
+				List<Notification> msgs = this.gmail.GetNotifications();
+				if (msgs.Count < 1)
+				{
+					this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.IconNoMail);
+					this.theNotifyIcon.BalloonTipText = "No new messages.";
+					return;
+				}
+
+				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.IconNewMail);
+				this.theNotifyIcon.BalloonTipText = msgs.Count+" new messages.";
+				foreach (Notification msg in msgs)
+				{
+					NotifyMessage notify = new NotifyMessage();
+					notify.SetMessage(msg);
+					notify.Show();
+					//System.Threading.Thread.Sleep(3000);
+					//notify.Close();
+				}
+			}
+			catch
 			{
 				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.IconError);
-			}
-			else if (count > 0)
-			{
-				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.IconNewMail);
-			}
-			else
-			{
-				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.IconNoMail);
 			}
 		}
 

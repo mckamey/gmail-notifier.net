@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using Notifier.Atom;
 
@@ -81,5 +82,26 @@ namespace Notifier.Feeds
 		}
 
 		#endregion Properties
+
+		#region SerializedFeed Method
+
+		protected override List<Notification> ParseFeed(AtomFeed03 feed)
+		{
+			List<Notification> msgs = new List<Notification>(feed.Entries.Count);
+			foreach (AtomEntry entry in feed.Entries)
+			{
+				Notification msg = new Notification();
+				msg.Title = entry.Title.Value;
+				msg.Author = entry.Author.ToString();
+				msg.Body = entry.Summary.Value;
+				msg.TimeStamp = entry.Modified.Value;
+				msg.Index = msgs.Count+1;
+				msg.Count = feed.Entries.Count;
+				msgs.Add(msg);
+			}
+			return msgs;
+		}
+
+		#endregion SerializedFeed Method
 	}
 }
