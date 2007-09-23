@@ -9,7 +9,7 @@ namespace Notifier.Providers
 	{
 		#region Constants
 
-		private const string FeedUrlFormat = "https://mail.google.com/{0}/feed/atom";
+		private const string FeedUrlFormat = "https://mail.google.com/{0}/feed/atom/{1}";
 		private const string IsGmail = "mail";
 		private const string IsGoogleApps = "a/{0}";
 
@@ -28,7 +28,14 @@ namespace Notifier.Providers
 		/// <summary>
 		/// Ctor.
 		/// </summary>
-		public GmailProvider(string username, string password)
+		public GmailProvider(string username, string password) : this(username, password, null)
+		{
+		}
+
+		/// <summary>
+		/// Ctor.
+		/// </summary>
+		public GmailProvider(string username, string password, string label)
 		{
 			if (String.IsNullOrEmpty(username))
 			{
@@ -47,13 +54,15 @@ namespace Notifier.Providers
 			{
 				this.feedUrl = String.Format(
 					GmailProvider.FeedUrlFormat,
-					GmailProvider.IsGmail);
+					GmailProvider.IsGmail,
+					label);
 			}
 			else
 			{
 				this.feedUrl = String.Format(
 					GmailProvider.FeedUrlFormat,
-					String.Format(GmailProvider.IsGoogleApps, domain));
+					String.Format(GmailProvider.IsGoogleApps, domain),
+					label);
 			}
 		}
 
