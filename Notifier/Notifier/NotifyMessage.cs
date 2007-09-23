@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-using Notifier.Feeds;
+using Notifier.Providers;
 
 namespace Notifier
 {

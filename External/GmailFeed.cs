@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 using Notifier.Atom;
 
-namespace Notifier.Feeds
+namespace Notifier.Providers
 {
-	public class GmailFeed : SerializedFeed<AtomFeed03>
+	public class GmailProvider : XmlProvider<AtomFeed03>
 	{
 		#region Constants
 
@@ -28,7 +28,7 @@ namespace Notifier.Feeds
 		/// <summary>
 		/// Ctor.
 		/// </summary>
-		public GmailFeed(string username, string password)
+		public GmailProvider(string username, string password)
 		{
 			if (String.IsNullOrEmpty(username))
 			{
@@ -46,14 +46,14 @@ namespace Notifier.Feeds
 			if (String.IsNullOrEmpty(domain))
 			{
 				this.feedUrl = String.Format(
-					GmailFeed.FeedUrlFormat,
-					GmailFeed.IsGmail);
+					GmailProvider.FeedUrlFormat,
+					GmailProvider.IsGmail);
 			}
 			else
 			{
 				this.feedUrl = String.Format(
-					GmailFeed.FeedUrlFormat,
-					String.Format(GmailFeed.IsGoogleApps, domain));
+					GmailProvider.FeedUrlFormat,
+					String.Format(GmailProvider.IsGoogleApps, domain));
 			}
 		}
 

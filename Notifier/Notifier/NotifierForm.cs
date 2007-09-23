@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-using Notifier.Feeds;
+using Notifier.Providers;
 
 namespace Notifier
 {
@@ -25,7 +25,7 @@ namespace Notifier
 
 		#region Fields
 
-		Notifier.Feeds.GmailFeed gmail;
+		Notifier.Providers.GmailProvider gmail;
 
 		#endregion Fields
 
@@ -74,7 +74,7 @@ namespace Notifier
 
 		protected void SignIn()
 		{
-			this.gmail = new Notifier.Feeds.GmailFeed(this.textUsername.Text, this.textPassword.Text);
+			this.gmail = new Notifier.Providers.GmailProvider(this.textUsername.Text, this.textPassword.Text);
 			this.Hide();
 			this.UpdateNotifier();
 			this.theTimer.Start();
