@@ -48,6 +48,7 @@
     <Compile Include="Atom\AtomDate.cs" />
     <Compile Include="Atom\AtomLink.cs" />
     <Compile Include="Atom\AtomEntry.cs" />
+    <Compile Include="Feeds\Notification.cs" />
     <Compile Include="Feeds\SerializedFeed.cs" />
     <Compile Include="Feeds\BaseFeed.cs" />
     <Compile Include="Feeds\GmailFeed.cs" />
@@ -56,6 +57,12 @@
     </Compile>
     <Compile Include="NotifierForm.Designer.cs">
       <DependentUpon>NotifierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotifyMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotifyMessage.Designer.cs">
+      <DependentUpon>NotifyMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +94,10 @@
     <EmbeddedResource Include="Icons\GreenMail.ico" />
     <EmbeddedResource Include="Icons\NewMail.ico" />
     <EmbeddedResource Include="Icons\NoMail.ico" />
+    <EmbeddedResource Include="NotifyMessage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NotifyMessage.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
