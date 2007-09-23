@@ -32,57 +32,76 @@ namespace Notifier
 			this.lblCount = new System.Windows.Forms.Label();
 			this.lblAuthor = new System.Windows.Forms.Label();
 			this.lblTitle = new System.Windows.Forms.Label();
-			this.lblBody = new System.Windows.Forms.Label();
+			this.textBody = new System.Windows.Forms.TextBox();
+			this.lblDate = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// lblCount
 			// 
 			this.lblCount.AutoSize = true;
-			this.lblCount.Location = new System.Drawing.Point(13, 13);
+			this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblCount.Location = new System.Drawing.Point(9, 9);
+			this.lblCount.Margin = new System.Windows.Forms.Padding(0);
 			this.lblCount.Name = "lblCount";
-			this.lblCount.Size = new System.Drawing.Size(60, 17);
+			this.lblCount.Size = new System.Drawing.Size(44, 17);
 			this.lblCount.TabIndex = 0;
-			this.lblCount.Text = "00 of 00";
+			this.lblCount.Text = "0 of 0";
+			this.lblCount.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// lblAuthor
 			// 
 			this.lblAuthor.AutoSize = true;
 			this.lblAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblAuthor.Location = new System.Drawing.Point(79, 13);
+			this.lblAuthor.Location = new System.Drawing.Point(56, 9);
 			this.lblAuthor.Name = "lblAuthor";
-			this.lblAuthor.Size = new System.Drawing.Size(327, 17);
+			this.lblAuthor.Size = new System.Drawing.Size(158, 17);
 			this.lblAuthor.TabIndex = 0;
-			this.lblAuthor.Text = "FirstName LastName <email@example.com>";
+			this.lblAuthor.Text = "FirstName LastName";
 			// 
 			// lblTitle
 			// 
 			this.lblTitle.AutoSize = true;
 			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblTitle.Location = new System.Drawing.Point(13, 30);
+			this.lblTitle.Location = new System.Drawing.Point(9, 26);
 			this.lblTitle.Name = "lblTitle";
 			this.lblTitle.Size = new System.Drawing.Size(377, 17);
 			this.lblTitle.TabIndex = 0;
 			this.lblTitle.Text = "RE: The quick brown fox jumped over the lazy dog.";
 			// 
-			// lblBody
+			// textBody
 			// 
-			this.lblBody.AutoSize = true;
-			this.lblBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblBody.Location = new System.Drawing.Point(13, 47);
-			this.lblBody.Name = "lblBody";
-			this.lblBody.Size = new System.Drawing.Size(785, 17);
-			this.lblBody.TabIndex = 0;
-			this.lblBody.Text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor i" +
-    "ncididunt ut labore et dolore magna aliqua.";
+			this.textBody.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBody.Location = new System.Drawing.Point(12, 43);
+			this.textBody.Margin = new System.Windows.Forms.Padding(0);
+			this.textBody.Multiline = true;
+			this.textBody.Name = "textBody";
+			this.textBody.ReadOnly = true;
+			this.textBody.Size = new System.Drawing.Size(354, 38);
+			this.textBody.TabIndex = 1;
+			this.textBody.TabStop = false;
+			this.textBody.Text = resources.GetString("textBody.Text");
+			// 
+			// lblDate
+			// 
+			this.lblDate.AutoSize = true;
+			this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblDate.Location = new System.Drawing.Point(210, 9);
+			this.lblDate.Name = "lblDate";
+			this.lblDate.Size = new System.Drawing.Size(153, 17);
+			this.lblDate.TabIndex = 0;
+			this.lblDate.Text = "Dec 31, 9999 23:59:59";
+			this.lblDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// NotifyMessage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(420, 78);
+			this.ClientSize = new System.Drawing.Size(375, 78);
 			this.ControlBox = false;
-			this.Controls.Add(this.lblBody);
+			this.Controls.Add(this.textBody);
 			this.Controls.Add(this.lblTitle);
+			this.Controls.Add(this.lblDate);
 			this.Controls.Add(this.lblAuthor);
 			this.Controls.Add(this.lblCount);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -91,7 +110,6 @@ namespace Notifier
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "NotifyMessage";
-			this.Opacity = 0.9;
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -108,6 +126,7 @@ namespace Notifier
 		private System.Windows.Forms.Label lblCount;
 		private System.Windows.Forms.Label lblAuthor;
 		private System.Windows.Forms.Label lblTitle;
-		private System.Windows.Forms.Label lblBody;
+		private System.Windows.Forms.TextBox textBody;
+		private System.Windows.Forms.Label lblDate;
 	}
 }

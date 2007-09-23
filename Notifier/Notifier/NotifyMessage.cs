@@ -22,7 +22,8 @@ namespace Notifier
 			this.lblAuthor.Text = msg.Author;
 			this.lblCount.Text = String.Format("{0} of {1}", msg.Index, msg.Count);
 			this.lblTitle.Text = msg.Title;
-			this.lblBody.Text = msg.Body;
+			this.lblDate.Text = msg.Date.ToString("MMM dd, yyyy  HH:mm:ss");
+			this.textBody.Text = msg.Body;
 		}
 
 		private void NotifyMessage_Click(object sender, EventArgs e)

@@ -28,7 +28,7 @@ namespace Notifier.Providers
 		/// <summary>
 		/// Ctor.
 		/// </summary>
-		public GmailProvider(string username, string password) : this(username, password, null)
+		public GmailProvider(string username, string password) : this(username, password, "unread")
 		{
 		}
 
@@ -101,9 +101,12 @@ namespace Notifier.Providers
 			{
 				Notification msg = new Notification();
 				msg.Title = entry.Title.Value;
-				msg.Author = entry.Author.ToString();
+				msg.Author =
+					String.IsNullOrEmpty(entry.Author.Name) ?
+					entry.Author.Email :
+					entry.Author.Name;
 				msg.Body = entry.Summary.Value;
-				msg.TimeStamp = entry.Modified.Value;
+				msg.Date = entry.Modified.Value;
 				msg.Index = msgs.Count+1;
 				msg.Count = feed.Entries.Count;
 				msgs.Add(msg);
