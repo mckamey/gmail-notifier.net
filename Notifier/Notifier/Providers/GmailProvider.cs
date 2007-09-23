@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-using Notifier.Atom;
+using MediaLib.Web.Feeds.Atom;
 
 namespace Notifier.Providers
 {
