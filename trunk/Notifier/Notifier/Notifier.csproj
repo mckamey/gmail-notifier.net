@@ -48,6 +48,10 @@
     <Compile Include="Feeds\Atom\AtomDate.cs" />
     <Compile Include="Feeds\Atom\AtomLink.cs" />
     <Compile Include="Feeds\Atom\AtomEntry.cs" />
+    <Compile Include="Feeds\Rss\RssChannel.cs" />
+    <Compile Include="Feeds\Rss\RssFeed.cs" />
+    <Compile Include="Feeds\Rss\RssItem.cs" />
+    <Compile Include="Feeds\Rss\RssSubElements.cs" />
     <Compile Include="Providers\Notification.cs" />
     <Compile Include="Providers\XmlNotifierProvider.cs" />
     <Compile Include="Providers\NotifierProvider.cs" />
