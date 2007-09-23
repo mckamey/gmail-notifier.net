@@ -111,7 +111,7 @@ namespace Notifier
 			List<Notification> msgs = null;
 			try
 			{
-				this.gmail.GetNotifications();
+				msgs = this.gmail.GetNotifications();
 				if (msgs.Count < 1)
 				{
 					this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NoMail);
