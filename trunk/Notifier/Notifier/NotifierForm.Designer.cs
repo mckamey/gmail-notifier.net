@@ -38,10 +38,11 @@ namespace Notifier
 			this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.textUsername = new System.Windows.Forms.TextBox();
 			this.textPassword = new System.Windows.Forms.TextBox();
-			this.theTimer = new System.Windows.Forms.Timer(this.components);
+			this.timerPolling = new System.Windows.Forms.Timer(this.components);
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.panelBtns = new System.Windows.Forms.Panel();
 			this.btnOK = new System.Windows.Forms.Button();
+			this.timerPreview = new System.Windows.Forms.Timer(this.components);
 			this.theContextMenuStrip.SuspendLayout();
 			this.panelBtns.SuspendLayout();
 			this.SuspendLayout();
@@ -111,10 +112,10 @@ namespace Notifier
 			this.textPassword.TabIndex = 2;
 			this.textPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NotifierForm_KeyPress);
 			// 
-			// theTimer
+			// timerPolling
 			// 
-			this.theTimer.Interval = 300000;
-			this.theTimer.Tick += new System.EventHandler(this.theTimer_Tick);
+			this.timerPolling.Interval = 300000;
+			this.timerPolling.Tick += new System.EventHandler(this.timerPolling_Tick);
 			// 
 			// btnCancel
 			// 
@@ -147,6 +148,11 @@ namespace Notifier
 			this.btnOK.Text = "OK";
 			this.btnOK.UseVisualStyleBackColor = true;
 			// 
+			// timerPreview
+			// 
+			this.timerPreview.Interval = 3000;
+			this.timerPreview.Tick += new System.EventHandler(this.timerPreview_Tick);
+			// 
 			// NotifierForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -161,7 +167,6 @@ namespace Notifier
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "NotifierForm";
-			this.Opacity = 0.9;
 			this.Padding = new System.Windows.Forms.Padding(8);
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -188,10 +193,11 @@ namespace Notifier
 		private System.Windows.Forms.TextBox textUsername;
 		private System.Windows.Forms.TextBox textPassword;
 		private System.Windows.Forms.ToolStripSeparator separator1;
-		private System.Windows.Forms.Timer theTimer;
+		private System.Windows.Forms.Timer timerPolling;
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Panel panelBtns;
 		private System.Windows.Forms.Button btnOK;
+		private System.Windows.Forms.Timer timerPreview;
 	}
 }
 

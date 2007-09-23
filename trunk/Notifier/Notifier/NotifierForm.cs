@@ -18,10 +18,16 @@ namespace Notifier
 	{
 		#region Constants
 
-		private const int MSPerMin = 60000;
+		private const int MSPerSec = 1000;
+		private const int MSPerMin = 60*MSPerSec;
+
 		private const int DefaultRefreshRate = 300000;
 		private const int MinRefreshRate = 30000;
-		private const string Config_RefreshRate = "RefreshRate";
+		private const int DefaultPreviewDelay = 3;
+		private const int MinPreviewDelay = 1;
+
+		private const string Config_RefreshRate = "RefreshRateMin";
+		private const string Config_PreviewDelay = "PreviewDelaySec";
 
 		private const string Icon_NewMail = "Icons.NewMail.ico";
 		private const string Icon_NoMail = "Icons.NoMail.ico";
@@ -33,6 +39,9 @@ namespace Notifier
 
 		private GmailProvider gmail;
 		private int refreshRate = -1;
+		private int previewDelay = -1;
+		private List<Notification> msgs = new List<Notification>();
+		private NotifyMessage notify = new NotifyMessage();
 
 		#endregion Fields
 
@@ -71,6 +80,27 @@ namespace Notifier
 			}
 		}
 
+		protected int PreviewDelay
+		{
+			get
+			{
+				if (this.previewDelay < MinPreviewDelay)
+				{
+					string rateStr = ConfigurationManager.AppSettings[Config_PreviewDelay];
+					int rateSec;
+					if (Int32.TryParse(rateStr, out rateSec) && rateSec > 0)
+					{
+						this.previewDelay = MSPerSec * rateSec;
+					}
+					else
+					{
+						this.previewDelay = DefaultPreviewDelay;
+					}
+				}
+				return this.previewDelay;
+			}
+		}
+
 		#endregion Properties
 
 		#region Methods
@@ -89,14 +119,9 @@ namespace Notifier
 
 				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NewMail);
 				this.theNotifyIcon.BalloonTipText = msgs.Count+" new messages.";
-				foreach (Notification msg in msgs)
-				{
-					NotifyMessage notify = new NotifyMessage();
-					notify.SetMessage(msg);
-					notify.Show();
-					//System.Threading.Thread.Sleep(3000);
-					//notify.Close();
-				}
+
+				this.msgs.AddRange(msgs);
+				this.timerPreview.Start();
 			}
 			catch
 			{
@@ -109,15 +134,30 @@ namespace Notifier
 			this.gmail = new Notifier.Providers.GmailProvider(this.textUsername.Text, this.textPassword.Text);
 			this.Hide();
 			this.UpdateNotifier();
-			this.theTimer.Interval = this.RefreshRate;
-			this.theTimer.Start();
+			this.timerPolling.Interval = this.RefreshRate;
+			this.timerPolling.Start();
 		}
 
 		#endregion Methods
 
 		#region Child Control Events
 
-		private void theTimer_Tick(object sender, EventArgs e)
+		private void timerPreview_Tick(object sender, EventArgs e)
+		{
+			if (this.msgs.Count < 1)
+			{
+				this.notify.Hide();
+				this.timerPreview.Stop();
+				return;
+			}
+
+			Notification msg = this.msgs[0];
+			this.msgs.RemoveAt(0);
+			this.notify.SetMessage(msg);
+			this.notify.Show();
+		}
+
+		private void timerPolling_Tick(object sender, EventArgs e)
 		{
 			this.UpdateNotifier();
 		}
@@ -159,7 +199,7 @@ namespace Notifier
 
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
-			this.theTimer.Stop();
+			this.timerPolling.Stop();
 			this.Hide();
 		}
 

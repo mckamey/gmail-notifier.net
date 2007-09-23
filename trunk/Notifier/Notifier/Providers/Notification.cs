@@ -36,7 +36,7 @@ namespace Notifier.Providers
 			set { this.title = value; }
 		}
 
-		public DateTime TimeStamp
+		public DateTime Date
 		{
 			get { return this.timeStamp; }
 			set { this.timeStamp = value; }
