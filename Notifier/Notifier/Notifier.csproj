@@ -50,7 +50,6 @@
     <Compile Include="Feeds\Atom\AtomDate.cs" />
     <Compile Include="Feeds\Atom\AtomSubElements.cs" />
     <Compile Include="Feeds\Atom\AtomEntry.cs" />
-    <Compile Include="Feeds\Atom\AtomContent.cs" />
     <Compile Include="Feeds\Rss\RssChannel.cs" />
     <Compile Include="Feeds\Rss\RssFeed.cs" />
     <Compile Include="Feeds\Rss\RssItem.cs" />
