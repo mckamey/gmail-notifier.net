@@ -32,6 +32,7 @@ namespace Notifier
 		private const string Icon_NewMail = "Icons.NewMail.ico";
 		private const string Icon_NoMail = "Icons.NoMail.ico";
 		private const string Icon_Error = "Icons.Error.ico";
+		private const string Icon_App = "App.ico";
 
 		private const string Text_NoMessages = "No unread messages";
 		private const string Text_NewMessages = "{0} unread messages";
