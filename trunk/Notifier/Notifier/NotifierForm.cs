@@ -140,10 +140,10 @@ namespace Notifier
 				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NewMail);
 				this.theNotifyIcon.BalloonTipText = String.Format(Text_NewMessages, msgs.Count);
 
-				if (showPreviews)
-				{
-					this.theNotifyIcon.ShowBalloonTip(this.PreviewDelay);
-				}
+				//if (showPreviews)
+				//{
+				//    this.theNotifyIcon.ShowBalloonTip(this.PreviewDelay);
+				//}
 			}
 			catch (System.Net.WebException ex)
 			{
@@ -269,6 +269,9 @@ namespace Notifier
 		{
 			this.textUsername.Text = this.textPassword.Text = null;
 			this.textUsername.Focus();
+
+			Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
+			this.Location = new Point(workingArea.Left+4, workingArea.Bottom-this.Height-4);
 		}
 
 		private void NotifierForm_FormClosing(object sender, FormClosingEventArgs e)
