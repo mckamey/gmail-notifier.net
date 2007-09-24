@@ -41,7 +41,6 @@ namespace Notifier
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.panelBtns = new System.Windows.Forms.Panel();
 			this.btnOK = new System.Windows.Forms.Button();
-			this.timerPreview = new System.Windows.Forms.Timer(this.components);
 			this.theContextMenu.SuspendLayout();
 			this.panelBtns.SuspendLayout();
 			this.SuspendLayout();
@@ -139,11 +138,6 @@ namespace Notifier
 			this.btnOK.UseVisualStyleBackColor = true;
 			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
 			// 
-			// timerPreview
-			// 
-			this.timerPreview.Interval = 3000;
-			this.timerPreview.Tick += new System.EventHandler(this.timerPreview_Tick);
-			// 
 			// NotifierForm
 			// 
 			this.AcceptButton = this.btnOK;
@@ -187,7 +181,6 @@ namespace Notifier
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Panel panelBtns;
 		private System.Windows.Forms.Button btnOK;
-		private System.Windows.Forms.Timer timerPreview;
 	}
 }
 
