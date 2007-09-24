@@ -127,6 +127,7 @@ namespace Notifier
 			this.TopMost = true;
 			this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyMessage_MouseClick);
 			this.MouseEnter += new System.EventHandler(this.NotifyMessage_MouseEnter);
+			this.VisibleChanged += new System.EventHandler(this.NotifyMessage_VisibleChanged);
 			this.MouseLeave += new System.EventHandler(this.NotifyMessage_MouseLeave);
 			this.ResumeLayout(false);
 			this.PerformLayout();

@@ -105,6 +105,12 @@ namespace Notifier
 			this.BackColor = SystemColors.Control;
 		}
 
+		private void NotifyMessage_VisibleChanged(object sender, EventArgs e)
+		{
+			Rectangle workingArea = Screen.PrimaryScreen.WorkingArea;
+			this.Location = new Point(workingArea.Left+4, workingArea.Bottom-this.Height-4);
+		}
+
 		#endregion Handlers
 	}
 }
