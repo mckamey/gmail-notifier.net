@@ -174,7 +174,6 @@ namespace Notifier
 			{
 				this.msgs.AddRange(msgs);
 				this.DisplayNotifications();
-				this.notify.TimerStart();
 			}
 		}
 
@@ -191,7 +190,6 @@ namespace Notifier
 		{
 			if (this.msgs.Count <= 0)
 			{
-				this.notify.Hide();
 				this.notify.TimerStop();
 				return;
 			}
@@ -200,7 +198,7 @@ namespace Notifier
 			this.msgs.RemoveAt(0);
 			this.ReadCache[msg.ID] = true;
 			this.notify.SetMessage(msg);
-			this.notify.Show();
+			this.notify.TimerStart();
 		}
 
 		#endregion Methods

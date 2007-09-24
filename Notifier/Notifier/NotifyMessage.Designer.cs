@@ -33,9 +33,9 @@ namespace Notifier
 			this.lblCount = new System.Windows.Forms.Label();
 			this.lblAuthor = new System.Windows.Forms.Label();
 			this.lblTitle = new System.Windows.Forms.Label();
-			this.textBody = new System.Windows.Forms.TextBox();
 			this.lblDate = new System.Windows.Forms.Label();
 			this.timerPreview = new System.Windows.Forms.Timer(this.components);
+			this.lblBody = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// lblCount
@@ -72,24 +72,6 @@ namespace Notifier
 			this.lblTitle.TabIndex = 0;
 			this.lblTitle.Text = "RE: The quick brown fox jumped over the lazy dog.";
 			// 
-			// textBody
-			// 
-			this.textBody.BackColor = System.Drawing.SystemColors.Control;
-			this.textBody.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBody.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.textBody.Enabled = false;
-			this.textBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBody.Location = new System.Drawing.Point(9, 43);
-			this.textBody.Margin = new System.Windows.Forms.Padding(0);
-			this.textBody.Multiline = true;
-			this.textBody.Name = "textBody";
-			this.textBody.ReadOnly = true;
-			this.textBody.Size = new System.Drawing.Size(357, 38);
-			this.textBody.TabIndex = 1;
-			this.textBody.TabStop = false;
-			this.textBody.Text = resources.GetString("textBody.Text");
-			this.textBody.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBody_MouseClick);
-			// 
 			// lblDate
 			// 
 			this.lblDate.AutoSize = true;
@@ -108,13 +90,25 @@ namespace Notifier
 			this.timerPreview.Interval = 3000;
 			this.timerPreview.Tick += new System.EventHandler(this.timerPreview_Tick);
 			// 
+			// lblBody
+			// 
+			this.lblBody.AutoEllipsis = true;
+			this.lblBody.AutoSize = true;
+			this.lblBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblBody.Location = new System.Drawing.Point(9, 43);
+			this.lblBody.MaximumSize = new System.Drawing.Size(357, 38);
+			this.lblBody.Name = "lblBody";
+			this.lblBody.Size = new System.Drawing.Size(356, 38);
+			this.lblBody.TabIndex = 0;
+			this.lblBody.Text = resources.GetString("lblBody.Text");
+			// 
 			// NotifyMessage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(375, 78);
 			this.ControlBox = false;
-			this.Controls.Add(this.textBody);
+			this.Controls.Add(this.lblBody);
 			this.Controls.Add(this.lblTitle);
 			this.Controls.Add(this.lblDate);
 			this.Controls.Add(this.lblAuthor);
@@ -144,8 +138,8 @@ namespace Notifier
 		private System.Windows.Forms.Label lblCount;
 		private System.Windows.Forms.Label lblAuthor;
 		private System.Windows.Forms.Label lblTitle;
-		private System.Windows.Forms.TextBox textBody;
 		private System.Windows.Forms.Label lblDate;
 		private System.Windows.Forms.Timer timerPreview;
+		private System.Windows.Forms.Label lblBody;
 	}
 }
