@@ -48,7 +48,7 @@ namespace Notifier
 			this.lblCount.Text = String.Format("{0} of {1}", msg.Index, msg.Count);
 			this.lblTitle.Text = msg.Title;
 			this.lblDate.Text = msg.Date.ToString("MMM dd, yyyy @ HH:mm:ss");
-			this.textBody.Text = msg.Body;
+			this.lblBody.Text = msg.Body;
 			this.link = msg.Link;
 		}
 
@@ -56,12 +56,14 @@ namespace Notifier
 		{
 			this.isHovering = false;
 			this.BackColor = SystemColors.Control;
+			this.Show();
 			this.timerPreview.Start();
 		}
 
 		public void TimerStop()
 		{
 			this.isHovering = false;
+			this.Hide();
 			this.BackColor = SystemColors.Control;
 			this.timerPreview.Stop();
 		}
