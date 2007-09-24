@@ -77,7 +77,7 @@ namespace Notifier.Providers
 
 		public override string ProviderName
 		{
-			get { return "Gmail"; }
+			get { return this.providerName; }
 		}
 
 		protected override string FeedUrl
