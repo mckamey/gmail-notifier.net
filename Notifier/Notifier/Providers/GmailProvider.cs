@@ -16,6 +16,7 @@ namespace Notifier.Providers
 		private const string IsGoogleApps = "a/{0}";
 		private const string GmailName = "Gmail";
 		private const string GoogleAppsName = "Google Apps";
+		private const string GmailDomain = "gmail.com";
 
 		#endregion Constants
 
@@ -56,7 +57,8 @@ namespace Notifier.Providers
 			this.password = password;
 
 			string domain = username.Substring(username.IndexOf('@')+1);
-			if (String.IsNullOrEmpty(domain))
+			if (String.IsNullOrEmpty(domain) ||
+				domain.IndexOf(GmailProvider.GmailDomain, StringComparison.InvariantCultureIgnoreCase) >= 0)
 			{
 				this.feedUrl = String.Format(
 					GmailProvider.FeedUrlFormat,
