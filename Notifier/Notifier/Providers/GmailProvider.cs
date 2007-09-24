@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 using MediaLib.Web.Feeds.Atom;
 
@@ -134,6 +135,11 @@ namespace Notifier.Providers
 				msg.Date = entry.Modified.Value;
 				msg.Index = msgs.Count+1;
 				msg.Count = feed.Entries.Count;
+				if (entry.Links.Count == 1)
+				{
+					msg.Link = new Uri(entry.Links[0].Href);
+				}
+
 				msgs.Add(msg);
 			}
 			return msgs;

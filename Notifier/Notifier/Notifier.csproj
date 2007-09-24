@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utils\BrowserUtility.cs" />
     <Compile Include="Feeds\Atom\AtomBase.cs" />
     <Compile Include="Feeds\Atom\AtomFeed.cs" />
     <Compile Include="Feeds\Atom\AtomSubElements.cs" />

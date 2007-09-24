@@ -60,33 +60,40 @@ namespace Notifier
 			// 
 			// lblTitle
 			// 
+			this.lblTitle.AutoEllipsis = true;
 			this.lblTitle.AutoSize = true;
 			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTitle.Location = new System.Drawing.Point(9, 26);
+			this.lblTitle.MaximumSize = new System.Drawing.Size(357, 17);
 			this.lblTitle.Name = "lblTitle";
-			this.lblTitle.Size = new System.Drawing.Size(377, 17);
+			this.lblTitle.Size = new System.Drawing.Size(345, 17);
 			this.lblTitle.TabIndex = 0;
 			this.lblTitle.Text = "RE: The quick brown fox jumped over the lazy dog.";
 			// 
 			// textBody
 			// 
 			this.textBody.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBody.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.textBody.Enabled = false;
 			this.textBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBody.Location = new System.Drawing.Point(12, 43);
+			this.textBody.Location = new System.Drawing.Point(9, 43);
 			this.textBody.Margin = new System.Windows.Forms.Padding(0);
 			this.textBody.Multiline = true;
 			this.textBody.Name = "textBody";
 			this.textBody.ReadOnly = true;
-			this.textBody.Size = new System.Drawing.Size(354, 38);
+			this.textBody.Size = new System.Drawing.Size(357, 38);
 			this.textBody.TabIndex = 1;
 			this.textBody.TabStop = false;
 			this.textBody.Text = resources.GetString("textBody.Text");
+			this.textBody.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBody_MouseClick);
 			// 
 			// lblDate
 			// 
 			this.lblDate.AutoSize = true;
 			this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblDate.Location = new System.Drawing.Point(213, 9);
+			this.lblDate.MaximumSize = new System.Drawing.Size(153, 17);
+			this.lblDate.MinimumSize = new System.Drawing.Size(153, 17);
 			this.lblDate.Name = "lblDate";
 			this.lblDate.Size = new System.Drawing.Size(153, 17);
 			this.lblDate.TabIndex = 0;
@@ -104,6 +111,7 @@ namespace Notifier
 			this.Controls.Add(this.lblDate);
 			this.Controls.Add(this.lblAuthor);
 			this.Controls.Add(this.lblCount);
+			this.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Location = new System.Drawing.Point(100, 50);
@@ -115,7 +123,7 @@ namespace Notifier
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "NotifyMessage";
 			this.TopMost = true;
-			this.Click += new System.EventHandler(this.NotifyMessage_Click);
+			this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyMessage_MouseClick);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
