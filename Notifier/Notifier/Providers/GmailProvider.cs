@@ -9,6 +9,7 @@ namespace Notifier.Providers
 	{
 		#region Constants
 
+		private const string DefaultUrl = "http://mail.google.com";
 		private const string FeedUrlFormat = "https://mail.google.com/{0}/feed/atom/{1}";
 		private const string IsGmail = "mail";
 		private const string IsGoogleApps = "a/{0}";
@@ -19,10 +20,11 @@ namespace Notifier.Providers
 
 		#region Fields
 
-		private string username = null;
-		private string password = null;
-		private string feedUrl = null;
-		private string providerName = null;
+		private readonly string username = null;
+		private readonly string password = null;
+		private readonly string feedUrl = null;
+		private readonly string providerName = null;
+		private string providerUrl = DefaultUrl;
 
 		#endregion Fields
 
@@ -80,7 +82,12 @@ namespace Notifier.Providers
 			get { return this.providerName; }
 		}
 
-		protected override string FeedUrl
+		public override string ProviderUrl
+		{
+			get { return this.providerUrl; }
+		}
+
+		protected override string ServiceUrl
 		{
 			get { return this.feedUrl; }
 		}
@@ -106,6 +113,11 @@ namespace Notifier.Providers
 
 		protected override List<Notification> ParseFeed(AtomFeed03 feed)
 		{
+			if (feed.Links.Count == 1)
+			{
+				this.providerUrl = feed.Links[0].Href;
+			}
+
 			List<Notification> msgs = new List<Notification>(feed.Entries.Count);
 			foreach (AtomEntry03 entry in feed.Entries)
 			{

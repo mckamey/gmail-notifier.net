@@ -7,8 +7,8 @@ namespace Notifier.Providers
 		#region Fields
 
 		private string id = null;
-		private int count = 0;
-		private int index = 0;
+		private int count = -1;
+		private int index = -1;
 		private string title = null;
 		private string author = null;
 		private string body = null;

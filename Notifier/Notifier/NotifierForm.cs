@@ -112,6 +112,12 @@ namespace Notifier
 
 		protected void UpdateNotifier(bool showPreviews)
 		{
+			if (this.provider == null)
+			{
+				this.Show();
+				return;
+			}
+
 			List<Notification> msgs = null;
 			try
 			{
@@ -146,8 +152,6 @@ namespace Notifier
 				msg.Title = ex.Status.ToString();
 				msg.Body = ex.Message;
 				msg.Link = ex.Response.ResponseUri;
-				msg.Date = DateTime.MinValue;
-				msg.Index = msg.Count = -1;
 
 				msgs = new List<Notification>();
 				msgs.Add(msg);
@@ -239,8 +243,7 @@ namespace Notifier
 
 		private void theNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
-			this.Show();
-			this.WindowState = FormWindowState.Normal;
+			this.UpdateNotifier(true);
 		}
 
 		#endregion NotifyIcon Handlers
@@ -264,6 +267,7 @@ namespace Notifier
 		private void NotifierForm_VisibleChanged(object sender, EventArgs e)
 		{
 			this.textUsername.Text = this.textPassword.Text = null;
+			this.textUsername.Focus();
 		}
 
 		private void NotifierForm_FormClosing(object sender, FormClosingEventArgs e)

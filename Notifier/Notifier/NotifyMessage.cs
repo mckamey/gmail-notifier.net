@@ -12,10 +12,22 @@ namespace Notifier
 {
 	public partial class NotifyMessage : Form
 	{
+		#region Fields
+
+		private Uri link = null;
+
+		#endregion Fields
+
+		#region Init
+
 		public NotifyMessage()
 		{
 			InitializeComponent();
 		}
+
+		#endregion Init
+
+		#region Methods
 
 		public void SetMessage(Notification msg)
 		{
@@ -25,13 +37,22 @@ namespace Notifier
 			this.lblAuthor.Text = msg.Author;
 			this.lblCount.Text = String.Format("{0} of {1}", msg.Index, msg.Count);
 			this.lblTitle.Text = msg.Title;
-			this.lblDate.Text = msg.Date.ToString("MMM dd, yyyy  HH:mm:ss");
+			this.lblDate.Text = msg.Date.ToString("MMM dd, yyyy @ HH:mm:ss");
 			this.textBody.Text = msg.Body;
+			this.link = msg.Link;
 		}
+
+		#endregion Methods
+
+		#region Handlers
 
 		private void NotifyMessage_Click(object sender, EventArgs e)
 		{
-			//TODO: open browser to URL
+			if (this.link != null && this.link.IsAbsoluteUri)
+			{
+			}
 		}
+
+		#endregion Handlers
 	}
 }

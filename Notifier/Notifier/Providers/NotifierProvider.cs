@@ -16,27 +16,22 @@ namespace Notifier.Providers
 
 		#region Fields
 
-		private Uri feedUri = null;
+		private Uri serviceUri = null;
 		private NetworkCredential credentials = null;
 
 		#endregion Fields
 
 		#region Properties
 
-		public abstract string ProviderName
-		{
-			get;
-		}
-
-		protected Uri FeedUri
+		protected Uri ServiceUri
 		{
 			get
 			{
-				if (this.feedUri == null)
+				if (this.serviceUri == null)
 				{
-					this.feedUri = new Uri(this.FeedUrl);
+					this.serviceUri = new Uri(this.ServiceUrl);
 				}
-				return this.feedUri;
+				return this.serviceUri;
 			}
 		}
 
@@ -64,21 +59,49 @@ namespace Notifier.Providers
 
 		#region Abstract Properties
 
-		protected abstract string FeedUrl
+		/// <summary>
+		/// Gets the display name of this provider.
+		/// </summary>
+		public abstract string ProviderName
 		{
 			get;
 		}
 
+		/// <summary>
+		/// Gets the URL to take the user to for further interaction.
+		/// </summary>
+		public abstract string ProviderUrl
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Gets the URL from where the data is retrieved.
+		/// </summary>
+		protected abstract string ServiceUrl
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Gets the username if service is authenticated.
+		/// </summary>
 		protected abstract string Username
 		{
 			get;
 		}
 
+		/// <summary>
+		/// Gets the password if service is authenticated.
+		/// </summary>
 		protected abstract string Password
 		{
 			get;
 		}
 
+		/// <summary>
+		/// Gets the domain if service is authenticated.
+		/// </summary>
 		protected abstract string Domain
 		{
 			get;
@@ -93,11 +116,11 @@ namespace Notifier.Providers
 			Stream stream = null;
 			using (WebClient client = new WebClient())
 			{
-				client.Credentials = this.Credientials.GetCredential(this.FeedUri, AuthType);
+				client.Credentials = this.Credientials.GetCredential(this.ServiceUri, AuthType);
 #if DEBUG
 				//string data = client.DownloadString(this.FeedUri);
 #endif
-				stream = client.OpenRead(this.FeedUrl);
+				stream = client.OpenRead(this.ServiceUrl);
 				return this.ParseFeed(stream);
 			}
 		}
