@@ -33,11 +33,14 @@ namespace Notifier
 		private const string Icon_NoMail = "Icons.NoMail.ico";
 		private const string Icon_Error = "Icons.Error.ico";
 
+		private const string Text_NoMessages = "No unread messages";
+		private const string Text_NewMessages = "{0} unread messages";
+
 		#endregion Constants
 
 		#region Fields
 
-		private GmailProvider gmail;
+		private NotifierProvider provider;
 		private int refreshRate = -1;
 		private int previewDelay = -1;
 		private List<Notification> msgs = new List<Notification>();
@@ -106,21 +109,33 @@ namespace Notifier
 
 		#region Methods
 
-		protected void UpdateNotifier()
+		protected void UpdateNotifier(bool showPreviews)
 		{
 			List<Notification> msgs = null;
 			try
 			{
-				msgs = this.gmail.GetNotifications();
+				msgs = this.provider.GetNotifications();
+				this.theNotifyIcon.BalloonTipTitle = this.provider.ProviderName;
+
 				if (msgs.Count < 1)
 				{
 					this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NoMail);
-					this.theNotifyIcon.BalloonTipText = "No new messages.";
+					this.theNotifyIcon.BalloonTipText = Text_NoMessages;
+
+					if (showPreviews)
+					{
+						this.theNotifyIcon.ShowBalloonTip(this.PreviewDelay);
+					}
 					return;
 				}
 
 				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NewMail);
-				this.theNotifyIcon.BalloonTipText = msgs.Count+" new messages.";
+				this.theNotifyIcon.BalloonTipText = String.Format(Text_NewMessages, msgs.Count);
+
+				if (showPreviews)
+				{
+					this.theNotifyIcon.ShowBalloonTip(this.PreviewDelay);
+				}
 			}
 			catch (System.Net.WebException ex)
 			{
@@ -129,33 +144,39 @@ namespace Notifier
 				Notification msg = new Notification(ex.Message);
 				msg.Title = ex.Status.ToString();
 				msg.Body = ex.Message;
-				msg.Date = DateTime.Now;
 				msg.Link = ex.Response.ResponseUri;
-				msg.Author = null;
-				msg.Index = 0;
-				msg.Count = 0;
+				msg.Date = DateTime.MinValue;
+				msg.Index = msg.Count = -1;
 
 				msgs = new List<Notification>();
 				msgs.Add(msg);
 			}
 
-			foreach (Notification msg in msgs)
+			if (!showPreviews)
 			{
-				if (!this.ReadCache.ContainsKey(msg.ID))
+				foreach (Notification msg in msgs)
 				{
-					this.msgs.AddRange(msgs);
-					this.DisplayNotifications();
-					this.timerPreview.Start();
-					return;
+					if (!this.ReadCache.ContainsKey(msg.ID))
+					{
+						showPreviews = true;
+						break;
+					}
 				}
+			}
+
+			if (showPreviews)
+			{
+				this.msgs.AddRange(msgs);
+				this.DisplayNotifications();
+				this.timerPreview.Start();
 			}
 		}
 
 		protected void SignIn(string username, string password)
 		{
-			this.gmail = new GmailProvider(username, password);
+			this.provider = new GmailProvider(username, password);
 			this.Hide();
-			this.UpdateNotifier();
+			this.UpdateNotifier(true);
 			this.timerPolling.Interval = this.RefreshRate;
 			this.timerPolling.Start();
 		}
@@ -182,13 +203,13 @@ namespace Notifier
 
 		private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (this.gmail == null)
+			if (this.provider == null)
 			{
 				this.Show();
 			}
 			else
 			{
-				this.UpdateNotifier();
+				this.UpdateNotifier(true);
 			}
 		}
 
@@ -208,7 +229,7 @@ namespace Notifier
 
 		private void timerPolling_Tick(object sender, EventArgs e)
 		{
-			this.UpdateNotifier();
+			this.UpdateNotifier(false);
 		}
 
 		#endregion Timer Handlers

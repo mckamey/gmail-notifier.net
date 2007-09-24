@@ -12,6 +12,8 @@ namespace Notifier.Providers
 		private const string FeedUrlFormat = "https://mail.google.com/{0}/feed/atom/{1}";
 		private const string IsGmail = "mail";
 		private const string IsGoogleApps = "a/{0}";
+		private const string GmailName = "Gmail";
+		private const string GoogleAppsName = "Google Apps";
 
 		#endregion Constants
 
@@ -20,6 +22,7 @@ namespace Notifier.Providers
 		private string username = null;
 		private string password = null;
 		private string feedUrl = null;
+		private string providerName = null;
 
 		#endregion Fields
 
@@ -56,6 +59,7 @@ namespace Notifier.Providers
 					GmailProvider.FeedUrlFormat,
 					GmailProvider.IsGmail,
 					label);
+				this.providerName = GmailName;
 			}
 			else
 			{
@@ -63,12 +67,18 @@ namespace Notifier.Providers
 					GmailProvider.FeedUrlFormat,
 					String.Format(GmailProvider.IsGoogleApps, domain),
 					label);
+				this.providerName = GoogleAppsName;
 			}
 		}
 
 		#endregion Init
 
 		#region Properties
+
+		public override string ProviderName
+		{
+			get { return "Gmail"; }
+		}
 
 		protected override string FeedUrl
 		{
@@ -104,9 +114,9 @@ namespace Notifier.Providers
 				if (entry.Authors.Count > 0)
 				{
 					msg.Author =
-					String.IsNullOrEmpty(entry.Authors[0].Name) ?
-					entry.Authors[0].Email :
-					entry.Authors[0].Name;
+						String.IsNullOrEmpty(entry.Authors[0].Name) ?
+						entry.Authors[0].Email :
+						entry.Authors[0].Name;
 				}
 				msg.Body = entry.Summary.Value;
 				msg.Date = entry.Modified.Value;

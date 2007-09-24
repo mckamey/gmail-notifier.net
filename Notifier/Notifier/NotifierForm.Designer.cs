@@ -54,7 +54,7 @@ namespace Notifier
 			this.theNotifyIcon.Visible = true;
 			this.theNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.theNotifyIcon_MouseDoubleClick);
 			// 
-			// theContextMenuStrip
+			// theContextMenu
 			// 
 			this.theContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshToolStripMenuItem,
@@ -63,9 +63,9 @@ namespace Notifier
 			this.theContextMenu.Name = "theContextMenuStrip";
 			this.theContextMenu.Size = new System.Drawing.Size(142, 54);
 			// 
-			// updateToolStripMenuItem
+			// refreshToolStripMenuItem
 			// 
-			this.refreshToolStripMenuItem.Name = "updateToolStripMenuItem";
+			this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
 			this.refreshToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
 			this.refreshToolStripMenuItem.Text = "Refresh...";
 			this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
@@ -156,7 +156,7 @@ namespace Notifier
 			this.Controls.Add(this.textPassword);
 			this.Controls.Add(this.textUsername);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.Location = new System.Drawing.Point(50, 50);
+			this.Location = new System.Drawing.Point(100, 50);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "NotifierForm";

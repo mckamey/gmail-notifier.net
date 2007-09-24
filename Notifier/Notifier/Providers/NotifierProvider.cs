@@ -23,6 +23,11 @@ namespace Notifier.Providers
 
 		#region Properties
 
+		public abstract string ProviderName
+		{
+			get;
+		}
+
 		protected Uri FeedUri
 		{
 			get
