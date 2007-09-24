@@ -42,7 +42,7 @@ namespace Notifier
 			// 
 			this.lblCount.AutoSize = true;
 			this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblCount.Location = new System.Drawing.Point(9, 9);
+			this.lblCount.Location = new System.Drawing.Point(9, 7);
 			this.lblCount.Margin = new System.Windows.Forms.Padding(0);
 			this.lblCount.Name = "lblCount";
 			this.lblCount.Size = new System.Drawing.Size(44, 17);
@@ -54,7 +54,7 @@ namespace Notifier
 			// 
 			this.lblAuthor.AutoSize = true;
 			this.lblAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblAuthor.Location = new System.Drawing.Point(56, 9);
+			this.lblAuthor.Location = new System.Drawing.Point(56, 7);
 			this.lblAuthor.Name = "lblAuthor";
 			this.lblAuthor.Size = new System.Drawing.Size(158, 17);
 			this.lblAuthor.TabIndex = 0;
@@ -65,7 +65,7 @@ namespace Notifier
 			this.lblTitle.AutoEllipsis = true;
 			this.lblTitle.AutoSize = true;
 			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblTitle.Location = new System.Drawing.Point(9, 26);
+			this.lblTitle.Location = new System.Drawing.Point(9, 24);
 			this.lblTitle.MaximumSize = new System.Drawing.Size(357, 17);
 			this.lblTitle.Name = "lblTitle";
 			this.lblTitle.Size = new System.Drawing.Size(345, 17);
@@ -76,7 +76,7 @@ namespace Notifier
 			// 
 			this.lblDate.AutoSize = true;
 			this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblDate.Location = new System.Drawing.Point(213, 9);
+			this.lblDate.Location = new System.Drawing.Point(213, 7);
 			this.lblDate.MaximumSize = new System.Drawing.Size(153, 17);
 			this.lblDate.MinimumSize = new System.Drawing.Size(153, 17);
 			this.lblDate.Name = "lblDate";
@@ -92,10 +92,9 @@ namespace Notifier
 			// 
 			// lblBody
 			// 
-			this.lblBody.AutoEllipsis = true;
 			this.lblBody.AutoSize = true;
-			this.lblBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblBody.Location = new System.Drawing.Point(9, 43);
+			this.lblBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblBody.Location = new System.Drawing.Point(9, 41);
 			this.lblBody.MaximumSize = new System.Drawing.Size(357, 38);
 			this.lblBody.Name = "lblBody";
 			this.lblBody.Size = new System.Drawing.Size(356, 38);
@@ -120,6 +119,7 @@ namespace Notifier
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "NotifyMessage";
+			this.Opacity = 0.8;
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

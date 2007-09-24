@@ -55,6 +55,7 @@ namespace Notifier
 		public void TimerStart()
 		{
 			this.isHovering = false;
+			this.Opacity = 0.80;
 			this.BackColor = SystemColors.Control;
 			this.Show();
 			this.timerPreview.Start();
@@ -64,6 +65,7 @@ namespace Notifier
 		{
 			this.isHovering = false;
 			this.Hide();
+			this.Opacity = 0.80;
 			this.BackColor = SystemColors.Control;
 			this.timerPreview.Stop();
 		}
@@ -82,9 +84,21 @@ namespace Notifier
 
 		private void NotifyMessage_MouseClick(object sender, MouseEventArgs e)
 		{
-			if (this.link != null && this.link.IsAbsoluteUri)
+			switch (e.Button)
 			{
-				BrowserUtility.LaunchBrowser(this.link);
+				case MouseButtons.Left:
+				{
+					if (this.link != null && this.link.IsAbsoluteUri)
+					{
+						BrowserUtility.LaunchBrowser(this.link);
+					}
+					break;
+				}
+				case MouseButtons.Right:
+				{
+					this.TimerStop();
+					break;
+				}
 			}
 		}
 
@@ -97,12 +111,14 @@ namespace Notifier
 		{
 			this.isHovering = true;
 			this.BackColor = SystemColors.Info;
+			this.Opacity = 1.00;
 		}
 
 		private void NotifyMessage_MouseLeave(object sender, EventArgs e)
 		{
 			this.isHovering = false;
 			this.BackColor = SystemColors.Control;
+			this.Opacity = 0.80;
 		}
 
 		private void NotifyMessage_VisibleChanged(object sender, EventArgs e)

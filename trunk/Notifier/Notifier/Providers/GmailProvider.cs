@@ -131,7 +131,7 @@ namespace Notifier.Providers
 						entry.Authors[0].Email :
 						entry.Authors[0].Name;
 				}
-				msg.Body = entry.Summary.Value;
+				msg.Body = System.Web.HttpUtility.HtmlDecode(entry.Summary.Value);
 				msg.Date = entry.Modified.Value;
 				msg.Index = msgs.Count+1;
 				msg.Count = feed.Entries.Count;
