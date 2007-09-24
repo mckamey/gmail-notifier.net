@@ -2,12 +2,11 @@ using System;
 using System.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 using Notifier.Providers;
+using Notifier.Utils;
 
 namespace Notifier
 {
@@ -243,7 +242,14 @@ namespace Notifier
 
 		private void theNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
-			this.UpdateNotifier(true);
+			if (this.provider != null)
+			{
+				BrowserUtility.LaunchBrowser(this.provider.ProviderUrl);
+			}
+			else
+			{
+				this.UpdateNotifier(true);
+			}
 		}
 
 		#endregion NotifyIcon Handlers

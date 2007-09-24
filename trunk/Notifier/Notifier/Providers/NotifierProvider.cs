@@ -118,7 +118,7 @@ namespace Notifier.Providers
 			{
 				client.Credentials = this.Credientials.GetCredential(this.ServiceUri, AuthType);
 #if DEBUG
-				//string data = client.DownloadString(this.FeedUri);
+				//string debug = client.DownloadString(this.FeedUri);
 #endif
 				stream = client.OpenRead(this.ServiceUrl);
 				return this.ParseFeed(stream);

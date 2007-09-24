@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using Notifier.Providers;
+using Notifier.Utils;
 
 namespace Notifier
 {
@@ -46,11 +47,17 @@ namespace Notifier
 
 		#region Handlers
 
-		private void NotifyMessage_Click(object sender, EventArgs e)
+		private void NotifyMessage_MouseClick(object sender, MouseEventArgs e)
 		{
 			if (this.link != null && this.link.IsAbsoluteUri)
 			{
+				BrowserUtility.LaunchBrowser(this.link);
 			}
+		}
+
+		private void textBody_MouseClick(object sender, MouseEventArgs e)
+		{
+			this.NotifyMessage_MouseClick(sender, e);
 		}
 
 		#endregion Handlers
