@@ -44,7 +44,7 @@ namespace Notifier
 		private int refreshRate = -1;
 		private int previewDelay = -1;
 		private List<Notification> msgs = new List<Notification>();
-		private NotifyMessage notify = new NotifyMessage();
+		private NotifyMessage notify = null;
 		private readonly Dictionary<string, bool> ReadCache = new Dictionary<string, bool>();
 
 		#endregion Fields
@@ -56,6 +56,8 @@ namespace Notifier
 		/// </summary>
 		public NotifierForm()
 		{
+			this.notify = new NotifyMessage(this);
+
 			InitializeComponent();
 		}
 
@@ -172,7 +174,7 @@ namespace Notifier
 			{
 				this.msgs.AddRange(msgs);
 				this.DisplayNotifications();
-				this.timerPreview.Start();
+				this.notify.TimerStart();
 			}
 		}
 
@@ -185,12 +187,12 @@ namespace Notifier
 			this.timerPolling.Start();
 		}
 
-		protected void DisplayNotifications()
+		protected internal void DisplayNotifications()
 		{
 			if (this.msgs.Count <= 0)
 			{
 				this.notify.Hide();
-				this.timerPreview.Stop();
+				this.notify.TimerStop();
 				return;
 			}
 
@@ -225,11 +227,6 @@ namespace Notifier
 		#endregion Context Menu Handlers
 
 		#region Timer Handlers
-
-		private void timerPreview_Tick(object sender, EventArgs e)
-		{
-			this.DisplayNotifications();
-		}
 
 		private void timerPolling_Tick(object sender, EventArgs e)
 		{

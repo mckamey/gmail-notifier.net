@@ -28,12 +28,14 @@ namespace Notifier
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifyMessage));
 			this.lblCount = new System.Windows.Forms.Label();
 			this.lblAuthor = new System.Windows.Forms.Label();
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.textBody = new System.Windows.Forms.TextBox();
 			this.lblDate = new System.Windows.Forms.Label();
+			this.timerPreview = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
 			// 
 			// lblCount
@@ -72,6 +74,7 @@ namespace Notifier
 			// 
 			// textBody
 			// 
+			this.textBody.BackColor = System.Drawing.SystemColors.Control;
 			this.textBody.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.textBody.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.textBody.Enabled = false;
@@ -100,6 +103,11 @@ namespace Notifier
 			this.lblDate.Text = "Dec 31, 9999 23:59:59";
 			this.lblDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
+			// timerPreview
+			// 
+			this.timerPreview.Interval = 3000;
+			this.timerPreview.Tick += new System.EventHandler(this.timerPreview_Tick);
+			// 
 			// NotifyMessage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -124,6 +132,8 @@ namespace Notifier
 			this.Text = "NotifyMessage";
 			this.TopMost = true;
 			this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyMessage_MouseClick);
+			this.MouseEnter += new System.EventHandler(this.NotifyMessage_MouseEnter);
+			this.MouseLeave += new System.EventHandler(this.NotifyMessage_MouseLeave);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -136,5 +146,6 @@ namespace Notifier
 		private System.Windows.Forms.Label lblTitle;
 		private System.Windows.Forms.TextBox textBody;
 		private System.Windows.Forms.Label lblDate;
+		private System.Windows.Forms.Timer timerPreview;
 	}
 }

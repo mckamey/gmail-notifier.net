@@ -15,14 +15,23 @@ namespace Notifier
 	{
 		#region Fields
 
+		private NotifierForm notifierOwner = null;
 		private Uri link = null;
+		private bool isHovering = false;
 
 		#endregion Fields
 
 		#region Init
 
-		public NotifyMessage()
+		public NotifyMessage(NotifierForm owner)
 		{
+			if (owner == null)
+			{
+				throw new ArgumentNullException("owner");
+			}
+
+			this.notifierOwner = owner;
+
 			InitializeComponent();
 		}
 
@@ -43,9 +52,31 @@ namespace Notifier
 			this.link = msg.Link;
 		}
 
+		public void TimerStart()
+		{
+			this.isHovering = false;
+			this.BackColor = SystemColors.Control;
+			this.timerPreview.Start();
+		}
+
+		public void TimerStop()
+		{
+			this.isHovering = false;
+			this.BackColor = SystemColors.Control;
+			this.timerPreview.Stop();
+		}
+
 		#endregion Methods
 
 		#region Handlers
+
+		private void timerPreview_Tick(object sender, EventArgs e)
+		{
+			if (!this.isHovering)
+			{
+				this.notifierOwner.DisplayNotifications();
+			}
+		}
 
 		private void NotifyMessage_MouseClick(object sender, MouseEventArgs e)
 		{
@@ -58,6 +89,18 @@ namespace Notifier
 		private void textBody_MouseClick(object sender, MouseEventArgs e)
 		{
 			this.NotifyMessage_MouseClick(sender, e);
+		}
+
+		private void NotifyMessage_MouseEnter(object sender, EventArgs e)
+		{
+			this.isHovering = true;
+			this.BackColor = SystemColors.Info;
+		}
+
+		private void NotifyMessage_MouseLeave(object sender, EventArgs e)
+		{
+			this.isHovering = false;
+			this.BackColor = SystemColors.Control;
 		}
 
 		#endregion Handlers
