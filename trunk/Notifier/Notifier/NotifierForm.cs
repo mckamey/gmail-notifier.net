@@ -17,6 +17,8 @@ namespace Notifier
 	{
 		#region Constants
 
+		private readonly object SyncLock = new object();
+
 		private const int MSPerSec = 1000;
 		private const int MSPerMin = 60*MSPerSec;
 
@@ -113,67 +115,84 @@ namespace Notifier
 
 		protected void UpdateNotifier(bool showPreviews)
 		{
-			if (this.provider == null)
+			lock (this.SyncLock)
 			{
-				this.Show();
-				return;
-			}
 
-			List<Notification> msgs = null;
-			try
-			{
-				msgs = this.provider.GetNotifications();
-				this.theNotifyIcon.BalloonTipTitle = this.provider.ProviderName;
-
-				if (msgs.Count < 1)
+				if (this.provider == null)
 				{
-					this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NoMail);
-					this.theNotifyIcon.BalloonTipText = Text_NoMessages;
-
-					if (showPreviews)
-					{
-						this.theNotifyIcon.ShowBalloonTip(this.PreviewDelay);
-					}
+					this.Show();
 					return;
 				}
 
-				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NewMail);
-				this.theNotifyIcon.BalloonTipText = String.Format(Text_NewMessages, msgs.Count);
-
-				//if (showPreviews)
-				//{
-				//    this.theNotifyIcon.ShowBalloonTip(this.PreviewDelay);
-				//}
-			}
-			catch (System.Net.WebException ex)
-			{
-				this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_Error);
-
-				Notification msg = new Notification(ex.Message);
-				msg.Title = ex.Status.ToString();
-				msg.Body = ex.Message;
-				msg.Link = ex.Response.ResponseUri;
-
-				msgs = new List<Notification>();
-				msgs.Add(msg);
-			}
-
-			if (!showPreviews)
-			{
-				foreach (Notification msg in msgs)
+				List<Notification> msgs = null;
+				try
 				{
-					if (!this.ReadCache.ContainsKey(msg.ID))
+					msgs = this.provider.GetNotifications();
+					if (msgs == null)
 					{
-						showPreviews = true;
-						break;
+						throw new NullReferenceException("NotifierProvider returned null for GetNotifications.");
+					}
+
+					this.theNotifyIcon.BalloonTipTitle = this.provider.ProviderName;
+
+					if (msgs.Count < 1)
+					{
+						this.theNotifyIcon.Icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NoMail);
+						this.theNotifyIcon.BalloonTipText = Text_NoMessages;
+
+						if (showPreviews)
+						{
+							this.theNotifyIcon.ShowBalloonTip(this.PreviewDelay);
+						}
+						return;
+					}
+
+					Icon icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_NewMail);
+					if (icon != null)
+					{
+						this.theNotifyIcon.Icon = icon;
+					}
+					this.theNotifyIcon.BalloonTipText = String.Format(Text_NewMessages, msgs.Count);
+
+					//if (showPreviews)
+					//{
+					//    this.theNotifyIcon.ShowBalloonTip(this.PreviewDelay);
+					//}
+				}
+				catch (System.Net.WebException ex)
+				{
+					Icon icon = new Icon(typeof(NotifierForm), NotifierForm.Icon_Error);
+					if (icon != null)
+					{
+						this.theNotifyIcon.Icon = icon;
+					}
+
+					Notification msg = new Notification(ex.Message);
+					msg.Title = ex.Status.ToString();
+					msg.Body = ex.Message;
+					msg.Link = ex.Response.ResponseUri;
+
+					msgs = new List<Notification>();
+					msgs.Add(msg);
+				}
+
+				if (!showPreviews)
+				{
+					foreach (Notification msg in msgs)
+					{
+						if (!this.ReadCache.ContainsKey(msg.ID))
+						{
+							showPreviews = true;
+							break;
+						}
 					}
 				}
-			}
 
-			if (showPreviews)
-			{
-				this.msgs.AddRange(msgs);
-				this.DisplayNotifications();
+				if (showPreviews)
+				{
+					this.msgs.AddRange(msgs);
+					this.DisplayNotifications();
+				}
 			}
 		}
 
