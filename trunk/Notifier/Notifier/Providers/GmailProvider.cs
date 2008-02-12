@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 
-using MediaLib.Web.Feeds.Atom;
+using WebFeeds.Feeds.Atom;
 
 namespace Notifier.Providers
 {
