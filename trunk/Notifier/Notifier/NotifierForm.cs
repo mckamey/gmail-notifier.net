@@ -170,7 +170,18 @@ namespace Notifier
 					Notification msg = new Notification(ex.Message);
 					msg.Title = ex.Status.ToString();
 					msg.Body = ex.Message;
-					msg.Link = ex.Response.ResponseUri;
+					if (ex.Response != null)
+					{
+						msg.Link = ex.Response.ResponseUri;
+					}
+					else
+					{
+						Uri uri;
+						if (Uri.TryCreate(this.provider.ProviderUrl, UriKind.RelativeOrAbsolute, out uri))
+						{
+							msg.Link = uri;
+						}
+					}
 
 					msgs = new List<Notification>();
 					msgs.Add(msg);
