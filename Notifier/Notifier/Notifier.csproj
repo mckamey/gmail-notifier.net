@@ -43,17 +43,13 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebFeeds, Version=1.0.802.1816, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\WebFeeds\WebFeeds.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Utils\BrowserUtility.cs" />
-    <Compile Include="Feeds\Atom\AtomBase.cs" />
-    <Compile Include="Feeds\Atom\AtomFeed.cs" />
-    <Compile Include="Feeds\Atom\AtomSubElements.cs" />
-    <Compile Include="Feeds\Atom\AtomEntry.cs" />
-    <Compile Include="Feeds\Rss\RssChannel.cs" />
-    <Compile Include="Feeds\Rss\RssFeed.cs" />
-    <Compile Include="Feeds\Rss\RssItem.cs" />
-    <Compile Include="Feeds\Rss\RssSubElements.cs" />
     <Compile Include="Providers\Notification.cs" />
     <Compile Include="Providers\XmlNotifierProvider.cs" />
     <Compile Include="Providers\NotifierProvider.cs" />

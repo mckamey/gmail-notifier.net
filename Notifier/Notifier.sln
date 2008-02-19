@@ -2,18 +2,45 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifier", "Notifier\Notifier.csproj", "{13FFDC6E-9922-4213-868C-9F2826BEFC94}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Notifier.Setup", "Notifier.Setup\Notifier.Setup.vdproj", "{644F401A-7404-4CD5-985A-D741AE5FE262}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", "{18F13E37-F191-498F-9228-39E92C7FA0F8}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebFeeds", "WebFeeds", "{7088DF8C-DE31-473D-8449-B54E6ABC9718}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		Assemblies\WebFeeds\License.txt = Assemblies\WebFeeds\License.txt
+		Assemblies\WebFeeds\WebFeeds.dll = Assemblies\WebFeeds\WebFeeds.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SourceCodeControl) = preSolution
 		SccNumberOfProjects = 3
 		SccLocalPath0 = .
+		CanCheckoutShared = false
 		SccProjectUniqueName1 = Notifier\\Notifier.csproj
 		SccLocalPath1 = .
+		CanCheckoutShared = false
 		SccProjectFilePathRelativizedFromConnection1 = Notifier\\
 		SccProjectUniqueName2 = Notifier.Setup\\Notifier.Setup.vdproj
 		SccLocalPath2 = .
+		CanCheckoutShared = false
 		SccProjectFilePathRelativizedFromConnection2 = Notifier.Setup\\
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +57,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7088DF8C-DE31-473D-8449-B54E6ABC9718} = {18F13E37-F191-498F-9228-39E92C7FA0F8}
 	EndGlobalSection
 EndGlobal
