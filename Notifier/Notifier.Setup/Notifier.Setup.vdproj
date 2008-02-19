@@ -152,7 +152,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WebFeeds, Version=1.0.802.1816, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WebFeeds, Version=1.0.802.1907, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_E1F12501E36122B72C0EB8E16485B066"
@@ -245,14 +245,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Notifier"
-        "ProductCode" = "8:{15A7A0F9-34B7-41AF-AC20-396FB059001B}"
-        "PackageCode" = "8:{AC536E79-A1A9-464D-81D5-6D67B6220216}"
+        "ProductCode" = "8:{57048811-4C60-4386-BE5C-5F22AFFA358A}"
+        "PackageCode" = "8:{705E30E4-41AB-42CB-A5F8-8003473305F3}"
         "UpgradeCode" = "8:{3360689D-C65A-4330-A3FA-4E92B49A1597}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.3"
+        "ProductVersion" = "8:1.0.4"
         "Manufacturer" = "8:SMM"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
