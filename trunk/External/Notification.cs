@@ -12,7 +12,7 @@ namespace Notifier.Providers
 		private string title = null;
 		private string author = null;
 		private string body = null;
-		private DateTime timeStamp = DateTime.MinValue;
+		private DateTime? timeStamp = null;
 		private Uri link = null;
 
 		#endregion Fields
@@ -55,7 +55,7 @@ namespace Notifier.Providers
 			set { this.title = value; }
 		}
 
-		public DateTime Date
+		public DateTime? Date
 		{
 			get { return this.timeStamp; }
 			set { this.timeStamp = value; }

@@ -134,7 +134,18 @@ namespace Notifier.Providers
 						entry.Authors[0].Name;
 				}
 				msg.Body = System.Web.HttpUtility.HtmlDecode(entry.Summary.Value);
-				msg.Date = entry.Modified.Value;
+				if (entry.Modified.HasValue)
+				{
+					msg.Date = entry.Modified.Value;
+				}
+				else if (entry.Updated.HasValue)
+				{
+					msg.Date = entry.Modified.Value;
+				}
+				else
+				{
+					msg.Date = null;
+				}
 				msg.Index = msgs.Count+1;
 				msg.Count = feed.Entries.Count;
 				if (entry.Links.Count == 1)

@@ -42,12 +42,14 @@ namespace Notifier
 		public void SetMessage(Notification msg)
 		{
 			this.lblCount.Visible = msg.Count > 0;
-			this.lblDate.Visible = msg.Date != DateTime.MinValue;
+			this.lblDate.Visible = msg.Date.HasValue;
 
 			this.lblAuthor.Text = msg.Author;
 			this.lblCount.Text = String.Format("{0} of {1}", msg.Index, msg.Count);
 			this.lblTitle.Text = msg.Title;
-			this.lblDate.Text = msg.Date.ToString("MMM dd, yyyy @ HH:mm:ss");
+			this.lblDate.Text = msg.Date.HasValue ?
+				msg.Date.Value.ToString("MMM dd, yyyy @ HH:mm:ss") :
+				String.Empty;
 			this.lblBody.Text = msg.Body;
 			this.link = msg.Link;
 		}
