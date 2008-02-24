@@ -27,14 +27,32 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A37B54707EDC4B4C5B0584559679FB67"
+        "OwnerKey" = "8:_3E308859641341A5B32F48405683D1A2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E1F12501E36122B72C0EB8E16485B066"
         "OwnerKey" = "8:_3E308859641341A5B32F48405683D1A2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_E1F12501E36122B72C0EB8E16485B066"
+        "OwnerKey" = "8:_A37B54707EDC4B4C5B0584559679FB67"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3E308859641341A5B32F48405683D1A2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A37B54707EDC4B4C5B0584559679FB67"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -148,11 +166,42 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A37B54707EDC4B4C5B0584559679FB67"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WebFeeds.XmlSerializers, Version=1.0.802.2409, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A37B54707EDC4B4C5B0584559679FB67"
+                    {
+                    "Name" = "8:WebFeeds.XmlSerializers.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WebFeeds.XmlSerializers.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_108390173005495085C82F66D6508F30"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E1F12501E36122B72C0EB8E16485B066"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WebFeeds, Version=1.0.802.2010, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WebFeeds, Version=1.0.802.2409, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_E1F12501E36122B72C0EB8E16485B066"
@@ -245,22 +294,22 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Notifier"
-        "ProductCode" = "8:{56790EC6-791F-4414-9F31-DF99B7631F56}"
-        "PackageCode" = "8:{C1E3015F-46BC-490E-9B5A-D762CDA834D8}"
+        "ProductCode" = "8:{77579F7D-4671-431A-890C-FAC24AD6F845}"
+        "PackageCode" = "8:{1FBAA5C8-F14D-4E94-8EC5-EA4CBDAE23E1}"
         "UpgradeCode" = "8:{3360689D-C65A-4330-A3FA-4E92B49A1597}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.6"
-        "Manufacturer" = "8:SMM"
+        "ProductVersion" = "8:1.0.0802"
+        "Manufacturer" = "8:PseudoCode Solutions"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Notifier"
         "Subject" = "8:"
         "ARPCONTACT" = "8:SMM"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:Notifier for Google Mail"
+        "ARPCOMMENTS" = "8:Notifier for Google Apps and GMail"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:_590AE446680B4EDE8C4DC6FFDBCD1EF8"
         "ARPIconIndex" = "3:0"

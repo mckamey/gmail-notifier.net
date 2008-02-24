@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebFeeds", "WebFeeds", "{70
 	ProjectSection(SolutionItems) = preProject
 		Assemblies\WebFeeds\License.txt = Assemblies\WebFeeds\License.txt
 		Assemblies\WebFeeds\WebFeeds.dll = Assemblies\WebFeeds\WebFeeds.dll
+		Assemblies\WebFeeds\WebFeeds.pdb = Assemblies\WebFeeds\WebFeeds.pdb
+		Assemblies\WebFeeds\WebFeeds.XmlSerializers.dll = Assemblies\WebFeeds\WebFeeds.XmlSerializers.dll
 	EndProjectSection
 EndProject
 Global

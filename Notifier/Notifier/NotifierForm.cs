@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 using Notifier.Providers;
@@ -234,6 +235,16 @@ namespace Notifier
 		#endregion Methods
 
 		#region Context Menu Handlers
+
+		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Assembly assembly = Assembly.GetExecutingAssembly();
+			Version version = assembly.GetName().Version;
+
+			MessageBox.Show(
+				String.Format("Notifier v{0}\r\nCopyright © 2007-2008, Stephen M. McKamey", version),
+				"About Notifier...");
+		}
 
 		private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
 		{

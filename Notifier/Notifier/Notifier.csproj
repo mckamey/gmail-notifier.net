@@ -37,7 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -47,8 +46,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assemblies\WebFeeds\WebFeeds.dll</HintPath>
     </Reference>
+    <Reference Include="WebFeeds.XmlSerializers, Version=1.0.802.2409, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\WebFeeds\WebFeeds.XmlSerializers.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyVersion.cs" />
     <Compile Include="Utils\BrowserUtility.cs" />
     <Compile Include="Providers\Notification.cs" />
     <Compile Include="Providers\XmlNotifierProvider.cs" />
@@ -113,4 +117,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PreBuildEvent>IF EXIST "$(SolutionDir)..\BuildTools\AutoVersioning\$(OutDir)AutoVersioning.exe" "$(SolutionDir)..\BuildTools\AutoVersioning\$(OutDir)AutoVersioning.exe" "$(ProjectDir)Properties\AssemblyVersion.cs"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

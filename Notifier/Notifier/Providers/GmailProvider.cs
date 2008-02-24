@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Net;
 
 using WebFeeds.Feeds.Atom;
@@ -133,14 +134,14 @@ namespace Notifier.Providers
 						entry.Authors[0].Email :
 						entry.Authors[0].Name;
 				}
-				msg.Body = System.Web.HttpUtility.HtmlDecode(entry.Summary.Value);
+				msg.Body = HttpUtility.HtmlDecode(entry.Summary.Value);
 				if (entry.Modified.HasValue)
 				{
 					msg.Date = entry.Modified.Value;
 				}
-				else if (entry.Updated.HasValue)
+				else if (entry.Issued.HasValue)
 				{
-					msg.Date = entry.Modified.Value;
+					msg.Date = entry.Issued.Value;
 				}
 				else
 				{
@@ -148,7 +149,7 @@ namespace Notifier.Providers
 				}
 				msg.Index = msgs.Count+1;
 				msg.Count = feed.Entries.Count;
-				if (entry.Links.Count == 1)
+				if (entry.Links.Count > 0)
 				{
 					msg.Link = new Uri(entry.Links[0].Href);
 				}
