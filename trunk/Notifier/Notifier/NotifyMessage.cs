@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -45,10 +44,10 @@ namespace Notifier
 			this.lblDate.Visible = msg.Date.HasValue;
 
 			this.lblAuthor.Text = msg.Author;
-			this.lblCount.Text = String.Format("{0} of {1}", msg.Index, msg.Count);
+			this.lblCount.Text = String.Format("{0}/{1}", msg.Index, msg.Count);
 			this.lblTitle.Text = msg.Title;
 			this.lblDate.Text = msg.Date.HasValue ?
-				msg.Date.Value.ToString("MMM dd, yyyy @ HH:mm:ss") :
+				msg.Date.Value.ToLocalTime().ToString("MMM dd, yyyy @ HH:mm") :
 				String.Empty;
 			this.lblBody.Text = msg.Body;
 			this.link = msg.Link;

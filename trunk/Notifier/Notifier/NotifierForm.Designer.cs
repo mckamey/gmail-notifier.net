@@ -41,6 +41,8 @@ namespace Notifier
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.panelBtns = new System.Windows.Forms.Panel();
 			this.btnOK = new System.Windows.Forms.Button();
+			this.separator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.theContextMenu.SuspendLayout();
 			this.panelBtns.SuspendLayout();
 			this.SuspendLayout();
@@ -56,11 +58,13 @@ namespace Notifier
 			// theContextMenu
 			// 
 			this.theContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.refreshToolStripMenuItem,
+            this.aboutToolStripMenuItem,
             this.separator1,
+            this.refreshToolStripMenuItem,
+            this.separator2,
             this.quitToolStripMenuItem});
 			this.theContextMenu.Name = "theContextMenuStrip";
-			this.theContextMenu.Size = new System.Drawing.Size(142, 54);
+			this.theContextMenu.Size = new System.Drawing.Size(142, 82);
 			// 
 			// refreshToolStripMenuItem
 			// 
@@ -138,6 +142,18 @@ namespace Notifier
 			this.btnOK.UseVisualStyleBackColor = true;
 			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
 			// 
+			// separator2
+			// 
+			this.separator2.Name = "separator2";
+			this.separator2.Size = new System.Drawing.Size(138, 6);
+			// 
+			// aboutToolStripMenuItem
+			// 
+			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+			this.aboutToolStripMenuItem.Text = "About...";
+			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+			// 
 			// NotifierForm
 			// 
 			this.AcceptButton = this.btnOK;
@@ -181,6 +197,8 @@ namespace Notifier
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Panel panelBtns;
 		private System.Windows.Forms.Button btnOK;
+		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator separator2;
 	}
 }
 
