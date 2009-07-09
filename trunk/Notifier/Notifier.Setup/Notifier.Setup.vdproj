@@ -7,10 +7,10 @@
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
-"SccProjectName" = "8:\"$/PseudoCode/Dev/Notifier\", IGDAAAAA"
-"SccLocalPath" = "8:.."
+"SccProjectName" = "8:"
+"SccLocalPath" = "8:"
 "SccAuxPath" = "8:"
-"SccProvider" = "8:MSSCCI:Microsoft Visual SourceSafe"
+"SccProvider" = "8:"
     "Hierarchy"
     {
         "Entry"
@@ -21,26 +21,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_52B0D1EDB261394A466E86D11A29865E"
+        "OwnerKey" = "8:_3E308859641341A5B32F48405683D1A2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_590AE446680B4EDE8C4DC6FFDBCD1EF8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A37B54707EDC4B4C5B0584559679FB67"
+        "MsmKey" = "8:_5E19933727E59C46D6E8243023E178F8"
         "OwnerKey" = "8:_3E308859641341A5B32F48405683D1A2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E1F12501E36122B72C0EB8E16485B066"
-        "OwnerKey" = "8:_3E308859641341A5B32F48405683D1A2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E1F12501E36122B72C0EB8E16485B066"
-        "OwnerKey" = "8:_A37B54707EDC4B4C5B0584559679FB67"
+        "MsmKey" = "8:_5E19933727E59C46D6E8243023E178F8"
+        "OwnerKey" = "8:_52B0D1EDB261394A466E86D11A29865E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -52,13 +52,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A37B54707EDC4B4C5B0584559679FB67"
+        "OwnerKey" = "8:_52B0D1EDB261394A466E86D11A29865E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E1F12501E36122B72C0EB8E16485B066"
+        "OwnerKey" = "8:_5E19933727E59C46D6E8243023E178F8"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -146,34 +146,14 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_590AE446680B4EDE8C4DC6FFDBCD1EF8"
-            {
-            "SourcePath" = "8:..\\Notifier\\App.ico"
-            "TargetName" = "8:App.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_108390173005495085C82F66D6508F30"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A37B54707EDC4B4C5B0584559679FB67"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_52B0D1EDB261394A466E86D11A29865E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WebFeeds.XmlSerializers, Version=1.0.802.2409, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WebFeeds.XmlSerializers, Version=1.0.802.2509, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A37B54707EDC4B4C5B0584559679FB67"
+                    "_52B0D1EDB261394A466E86D11A29865E"
                     {
                     "Name" = "8:WebFeeds.XmlSerializers.dll"
                     "Attributes" = "3:512"
@@ -197,14 +177,34 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E1F12501E36122B72C0EB8E16485B066"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_590AE446680B4EDE8C4DC6FFDBCD1EF8"
+            {
+            "SourcePath" = "8:..\\Notifier\\App.ico"
+            "TargetName" = "8:App.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_108390173005495085C82F66D6508F30"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5E19933727E59C46D6E8243023E178F8"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WebFeeds, Version=1.0.802.2409, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WebFeeds, Version=1.0.802.2509, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E1F12501E36122B72C0EB8E16485B066"
+                    "_5E19933727E59C46D6E8243023E178F8"
                     {
                     "Name" = "8:WebFeeds.dll"
                     "Attributes" = "3:512"
@@ -843,7 +843,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3E308859641341A5B32F48405683D1A2"
             {
-            "SourcePath" = "8:..\\Notifier\\obj\\Release\\Notifier.exe"
+            "SourcePath" = "8:..\\Notifier\\obj\\Debug\\Notifier.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_108390173005495085C82F66D6508F30"
@@ -869,9 +869,6 @@
                 {
                 }
             }
-        }
-        "VJSharpPlugin"
-        {
         }
     }
 }
