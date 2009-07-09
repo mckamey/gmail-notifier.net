@@ -32,19 +32,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebFeeds", "WebFeeds", "{70
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 3
-		SccLocalPath0 = .
-		CanCheckoutShared = false
-		SccProjectUniqueName1 = Notifier\\Notifier.csproj
-		SccLocalPath1 = .
-		CanCheckoutShared = false
-		SccProjectFilePathRelativizedFromConnection1 = Notifier\\
-		SccProjectUniqueName2 = Notifier.Setup\\Notifier.Setup.vdproj
-		SccLocalPath2 = .
-		CanCheckoutShared = false
-		SccProjectFilePathRelativizedFromConnection2 = Notifier.Setup\\
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
